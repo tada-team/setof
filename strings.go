@@ -2,36 +2,36 @@ package setof
 
 import "sort"
 
-type strings map[string]struct{}
+type Strings map[string]struct{}
 
-func Strings(v ...string) strings {
-	set := make(strings)
+func NewStrings(v ...string) Strings {
+	set := make(Strings)
 	if len(v) > 0 {
 		set.Update(v...)
 	}
 	return set
 }
 
-func (set strings) Update(v ...string) strings {
+func (set Strings) Update(v ...string) Strings {
 	for _, s := range v {
 		set[s] = struct{}{}
 	}
 	return set
 }
 
-func (set strings) Remove(v ...string) strings {
+func (set Strings) Remove(v ...string) Strings {
 	for _, s := range v {
 		delete(set, s)
 	}
 	return set
 }
 
-func (set strings) Contains(v string) bool {
+func (set Strings) Contains(v string) bool {
 	_, ok := set[v]
 	return ok
 }
 
-func (set strings) SortedList() []string {
+func (set Strings) SortedList() []string {
 	res := make([]string, 0, len(set))
 	for k := range set {
 		res = append(res, k)
