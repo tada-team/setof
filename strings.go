@@ -5,11 +5,12 @@ import "sort"
 type Strings map[string]struct{}
 
 func NewStrings(v ...string) Strings {
-	set := make(Strings)
 	if len(v) > 0 {
+		set := make(Strings, len(v))
 		set.Update(v...)
+		return set
 	}
-	return set
+	return make(Strings)
 }
 
 func (set Strings) Update(v ...string) Strings {
