@@ -1,1 +1,1 @@
-module "setof"
+module "github.com/tada-team/setof"
